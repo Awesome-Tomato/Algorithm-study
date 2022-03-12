@@ -1,6 +1,6 @@
 # 알고리즘 스터디 
 낮은 난이도로, 여러 자료구조를 접하는게 목적인 스터디에요! \
-과정은 해당 [레포지토리](https://github.com/onlybooks/algorithm-interview#%EB%AC%B8%EC%A0%9C-%ED%92%80%EC%9D%B4)를 활용합니다. 
+과정은 해당 [레포지토리](https://github.com/onlybooks/algorithm-interview#%EB%AC%B8%EC%A0%9C-%ED%92%80%EC%9D%B4) 를 활용합니다. 
 
 ## 진행방식 
 1. 매번 새 챕터에 들어갈때 담당하는 사람이 해당 자료구조 / 알고리즘에 관한 내용을 정리해 설명합니다.
