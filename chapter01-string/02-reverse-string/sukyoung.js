@@ -7,10 +7,10 @@ let reverseString = function(s) {
     refInput.push(s[i]);
   }
 
-  let count = 0;
+  let leftToRight = 0;
   for (let i = s.length - 1; i >= 0; i--) {
-    s[count] = refInput[i];  
-    count = count + 1; 
+    s[leftToRight] = refInput[i];  
+    leftToRight = leftToRight + 1; 
   }
 };
 
