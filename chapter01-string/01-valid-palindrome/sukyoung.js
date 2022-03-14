@@ -12,23 +12,23 @@ let isPalindrome = function(s) {
 function createNormalString(inputString) {
   if (inputString === ' ') return inputString;
 
-  let answer = '';
-  for (let i = 0; i < inputString.length; i++) {
-    const lowerCase = inputString[i].toLowerCase();
-    if (/[^a-zA-Z0-9]/.test(lowerCase)) continue;
-    answer = answer + lowerCase;
+  const result = [];
+  const lowerCase = inputString.toLowerCase();
+  for (let i = 0; i < lowerCase.length; i++) {
+    if (/[^a-zA-Z0-9]/.test(lowerCase[i])) continue;
+    result.push(lowerCase[i]);
   }
-  return answer;
+  return result.join('');
 };
 
 function createReverseString(normalStr) {
   if (normalStr === ' ') return normalStr;
 
-  let answer = '';
+  const result = [];
   for (let i = normalStr.length - 1; i >= 0; i--) {
-    answer = answer + normalStr[i];
+    result.push(normalStr[i]);
   }
-  return answer;
+  return result.join('');
 };
 
 console.log(isPalindrome(input1)); // true
