@@ -25,7 +25,7 @@ const banned5 = ["abc","abcd","jeff"];
 */
 
 const mostCommonWord = function(paragraph, banned) {
-  const paragraphWithoutPuntuation = getParagraphsWithoutPuntuation(paragraph).split(' '); 
+  const paragraphWithoutPuntuation = replacePuntuationToWhiteSpace(paragraph).split(' '); 
   const hashParagraph = setParagraphToHashTable(paragraphWithoutPuntuation);
   const hashParagraphhWithoutBanned = setBannedWordValueZero(hashParagraph, banned); 
   const mostUsedWord = getMostUsedWord(hashParagraphhWithoutBanned); 
@@ -33,7 +33,7 @@ const mostCommonWord = function(paragraph, banned) {
   return mostUsedWord;
 };
 
-function getParagraphsWithoutPuntuation(paragraph) {
+function replacePuntuationToWhiteSpace(paragraph) {
   const puntuations = /[ "!?',;.]/g;
   
   return (
