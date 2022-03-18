@@ -4,7 +4,7 @@
  * @return {string}
  */
 const mostCommonWord = function(paragraph, banned) {
-    const hash = paragraph.split(' ').reduce((acc, str)=>{
+    const hash = paragraph.replaceAll(/[\s|!|?|'|,|;|.]/g,' ').split(' ').reduce((acc, str)=>{
         const STR = str.toLowerCase().replaceAll(/[^a-z]/g, '');
         if(!STR) return acc;
         if(banned.indexOf(STR) > -1) return acc;
