@@ -3,17 +3,21 @@
  * @return {string[]}
  */
 var reorderLogFiles = function(logs) {
+    const letterLogs = logs.filter(isLetterLog);
+    const digitLogs = logs.filter(isDigitLog);
+
     return [].concat(
-        logs
-            .filter(isLetterLog)
-            .map(parseLetterLog)
-            .sort(compareLog)
-            .map(toRawLog),
-        logs
-            .filter(isDigitLog)
+        orderLetterLogs(letterLogs),
+        digitLogs,
     );
 };
 
+function orderLetterLogs(logs) {
+    return logs
+        .map(parseLetterLog)
+        .sort(compareLog)
+        .map(toRawLog);
+}
 
 function isLetterLog(log) {
     return isNaN(log[log.length-1]);
