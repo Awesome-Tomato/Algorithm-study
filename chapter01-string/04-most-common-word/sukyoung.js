@@ -16,34 +16,64 @@ const banned3 = ["bob", "hit"]; // output: ball
 const paragraph4 = "a, a, a, a, b,b,b,c, c";
 const banned4 = ["a"]; // output: b
 
+const paragraph5 = "abc abc? abcd the jeff!";
+const banned5 = ["abc","abcd","jeff"];
+
+/* 
+* punctuation 제거
+* hash를 미리 만들고, banned 문자열 제거
+*/
 
 const mostCommonWord = function(paragraph, banned) {
-  const paragraphWithoutPuntuation = getParagraphsWithoutPuntuation(paragraph); // 'bob a ball the ball flew far after it was hit'
-  const paragraphWithoutBanned = getParagraphWithouBanned(paragraphWithoutPuntuation, banned); // 'bob a ball the ball flew far after it was'
-
-  const countWord = countEachWords(paragraphWithoutBanned); // { bob: 1, a: 1, ball: 2, the: 1, flew: 1, far: 1, after: 1, it: 1, was: 1 }
-  const mostUsedWord = getMostUsedWord(countWord); 
+  const paragraphWithoutPuntuation = getParagraphsWithoutPuntuation(paragraph).split(' '); 
+  const hashParagraph = setParagraphToHashTable(paragraphWithoutPuntuation);
+  const hashParagraphhWithoutBanned = setBannedWordValueZero(hashParagraph, banned); 
+  const mostUsedWord = getMostUsedWord(hashParagraphhWithoutBanned); 
 
   return mostUsedWord;
 };
 
-function getParagraphWithoutSpace(paragraphs) {
-  const result = [];
-
-  for (let i = 0; i < paragraphs.length; i++) {
-    const eachWord = paragraphs[i];
-    if (eachWord === ' ') continue;
-    if (eachWord.length > 1) {
-      const splittedWord = getParagraphsWithoutPuntuation(eachWord);
-      result.push(splittedWord);
-    }
-    result.push(paragraphs);
-  }
-  return result;
+function getParagraphsWithoutPuntuation(paragraph) {
+  const puntuations = /[ "!?',;.]/g;
+  
+  return (
+    paragraph
+    .toLowerCase()
+    .replaceAll(puntuations, ' ')
+    .replaceAll(/ +/g, ' ')
+  );
 }
 
-function getMostUsedWord(words) {
-  const num = Object.values(words);
+function setParagraphToHashTable(paragraphs) {
+  const hash = {};
+
+  for (let i = 0; i < paragraphs.length; i++) {
+    const key = paragraphs[i];
+
+    if (key === '') continue;
+    if (hash[key] === undefined) {
+      hash[key] = 1;
+    } else {
+      hash[key] += 1;
+    }
+  }
+
+  return hash;
+}
+
+function setBannedWordValueZero(hashObj, banned) {
+
+  for (let i = 0; i < banned.length; i++) {
+    const keys = banned[i];
+    if (hashObj[keys]) {
+      hashObj[keys] = 0;
+    }
+  }
+  return hashObj;
+}
+
+function getMostUsedWord(hash) {
+  const num = Object.values(hash);
   let max = num[0];
 
   for (let i = 0; i < num.length; i++) {
@@ -52,64 +82,15 @@ function getMostUsedWord(words) {
     }
   }
 
-  for ( const [key, value] of Object.entries(words)) {
+  for ( const [key, value] of Object.entries(hash)) {
     if (value === max) {
       return key;
     }
   }
 }
 
-function countEachWords(paragraphs) {
-  const words = {};
-
-  for (let i = 0; i < paragraphs.length; i++) {
-    const key = paragraphs[i];
-
-    if (words[key] === undefined ) {
-      words[key] = 1;
-    } else {
-      words[key] += 1;
-    }
-  }
-
-  return words;
-}
-
-function getParagraphWithouBanned(paragraph, banned) {
-  const result = [];
-
-  for (let i = 0; i < paragraph.length; i++) {
-    console.log(paragraph[i])
-    if (banned.length === 1 && paragraph[i].includes(banned)) continue;
-    if (banned.length > 1 && paragraph[i].includes(banned[i])) continue;
-    result.push(paragraph[i]);
-  }
-  return result;
-}
-
-// 수정필요
-function getParagraphsWithoutPuntuation(paragraph) {
-  const lowerCase = paragraph.toLowerCase();
-  const alphabetTest = /[a-z]/;
-  
-  const result = [];
-  for (let i = 0; i < lowerCase.length; i++) {
-    if (!alphabetTest.test(lowerCase[i])) continue;
-    result.push(lowerCase[i]);
-  }
-  
-  return result;  
-  // let copyParagraph = lowerCase;
-  // copyParagraph = lowerCase.replace('.', '');
-  // copyParagraph = copyParagraph.replace(',', '');
-  // copyParagraph = copyParagraph.replace('!', '');
-  // copyParagraph = copyParagraph.replace(';', '');
-  // copyParagraph = copyParagraph.replace('?', '');
-  // copyParagraph = copyParagraph.replace('\'', '');
-  // return copyParagraph;
-}
-
 console.log(mostCommonWord(paragraph1, banned1));
 console.log(mostCommonWord(paragraph2, banned2));
 console.log(mostCommonWord(paragraph3, banned3));
 console.log(mostCommonWord(paragraph4, banned4));
+console.log(mostCommonWord(paragraph5, banned5));
