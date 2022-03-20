@@ -15,8 +15,8 @@ const input5 = ["", "b"]; // [[""], ["b"]]
 * value값만 뽑아서 [] 여기다 넣어서 리턴
 */
 const groupAnagrams = function(strs) {
-  const sortStr = getSort(strs); // [ 'aet', 'aet', 'ant', 'aet', 'ant', 'abt' ]
-  const hash = createSortHash(sortStr, strs);  // { aet: 'eat,tea,ate', ant: 'tan,nat', abt: 'bat' }
+  const sortStr = getSort(strs); 
+  const hash = createSortHash(sortStr, strs);  
   return getResultFromHashTable(hash);
 };
 
@@ -37,21 +37,16 @@ function createSortHash(sortStrs, originStrs) {
     const value = getSort(originStrs[i]).join('');
 
     if (hash[key] !== undefined) {
-      hash[key] = hash[key] + ',' + value;
+      hash[key].push(value);
     } else {
-      hash[key] = value;
+      hash[key] = [value];
     }
   }
   return hash;
 }
 
 function getResultFromHashTable(hashObj) {
-  const result = [];
-  const values = Object.values(hashObj); // [ 'eat,tea,ate', 'tan,nat', 'bat' ]
-  for (let i = 0; i < values.length; i++) {
-    result.push(values[i].split(','));
-  }
-  return result;
+  return Object.values(hashObj);
 }
 
 function sortStrings(a, b) {
@@ -61,7 +56,7 @@ function sortStrings(a, b) {
 }
 
 console.log(groupAnagrams(input1));
-console.log(groupAnagrams(input2));
-console.log(groupAnagrams(input3));
-console.log(groupAnagrams(input4));
-console.log(groupAnagrams(input5));
+// console.log(groupAnagrams(input2));
+// console.log(groupAnagrams(input3));
+// console.log(groupAnagrams(input4));
+// console.log(groupAnagrams(input5));
