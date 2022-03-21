@@ -3,47 +3,30 @@
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    const groups = [];
+    const set = {};
     for(const word of strs) {
-        const anagramGroup = findMatchedAnagramGroup(groups, word);
-        if(anagramGroup) {
-            anagramGroup.push(word);
-            continue;
-        }
-        const group = [word];
-        group.set = getCharacterSet(word);
-        groups.push(group);
+        groupBySortedString(set, word);
     }
-    
-    return groups;
+
+    return Object.values(set);
 };
 
-function findMatchedAnagramGroup(groups, word) {
-    const wordSet = getCharacterSet(word);
-    for(const group of groups) {
-        const isAnagram = checkAnagram(group.set, wordSet);
-        if(isAnagram) return group;
-    }
-    
-    return null;
+function groupBySortedString(groupSet, word) {
+    const sortedCharacters = sortCharacter(word);
+    const group = groupSet[sortedCharacters];
+
+    const isPushed = push(group, word);
+    if(!isPushed) groupSet[sortedCharacters] = [word];
 }
 
-function checkAnagram(setA, setB) {
-    for(const ch in setA) {
-        if(setA[ch] !== setB[ch]) return false;
-    }
-    
-    for(const ch in setB) {
-        if(setA[ch] !== setB[ch]) return false;
-    }
-    return true;
+function sortCharacter(word) {
+    return word.split('').sort().join('');
 }
 
-function getCharacterSet(word) {
-    const set = {};
-    for(const ch of word) {
-        set[ch] = (set[ch] || 0) + 1;
+function push(arr, item) {
+    if(arr) {
+        arr.push(item);
+        return true;
     }
-    
-    return set;
+    return false;
 }
