@@ -20,8 +20,8 @@
 ## 담당 학생
 
 [SuKyoung](https://github.com/sukyoungshin)
-\> [MaetDol](https://github.com/MaetDol) :fire:
-\> [FEhyoeun](https://github.com/FEhyoeun)
+\> [MaetDol](https://github.com/MaetDol)
+\> [FEhyoeun](https://github.com/FEhyoeun) :fire:
 \> [becover](https://github.com/becover)
 \> [chanwooo](https://github.com/chanwooo)
 
