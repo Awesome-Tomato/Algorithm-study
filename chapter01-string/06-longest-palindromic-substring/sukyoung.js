@@ -8,18 +8,11 @@ const input2 = "cbbd";
 const input3 = 'oiasjdfiojaweoijfoiwjefoaofijwfeijoaef';
 const input4 = 'abadd';
 
-const isBothSame = function(string, position, length) {
-  const left = string[position-length];
-  const right = string[position+length];
+// 팰린드롬이 홀수일 때
+const isBothSame = function(string, center, length) {
+  const left = string[center-length];
+  const right = string[center+length];
 
-  if (left === undefined || right === undefined) return false;
-  return (left === right);
-};
-
-const isNextSame = function(string, center1, center2, length) {
-  const left = string[center1-length];
-  const right = string[center2+length];
-  
   if (left === undefined || right === undefined) return false;
   return (left === right);
 };
@@ -32,6 +25,29 @@ const getOddPalinedromeLength = function(string, center) {
   return string.length;
 };
 
+const isOddPalinedrome = function(string) {
+  let positionOdd;
+  let longestOdd = 0; 
+  for (let i = 0; i < string.length; i++) {
+    // 팰린드롬이 홀수일 때
+    const oddPalinedrome = getOddPalinedromeLength(string, i); 
+    if (longestOdd < oddPalinedrome) {
+      longestOdd = oddPalinedrome;
+      positionOdd = i;
+    }
+  }
+  return {positionOdd, longestOdd};
+};
+
+// 팰린드롬이 짝수일 때
+const isNextSame = function(string, center1, center2, length) {
+  const left = string[center1-length];
+  const right = string[center2+length];
+  
+  if (left === undefined || right === undefined) return false;
+  return (left === right);
+};
+
 const getEvenPalinedromeLength = function(string, center) {
   for (let i = 0; i < string.length; i++) {
     const isSameCharacter = isNextSame(string, center, center+1, i);
@@ -40,31 +56,26 @@ const getEvenPalinedromeLength = function(string, center) {
   }
 };
 
-const longestPalindrome = function(string) {
-  let positionOdd;
-  let longestOdd = 0; 
-  let longestEven = 0; 
+const isEvenPalinedrome = function(string) {
   let positionEven;
-
+  let longestEven = 0; 
   for (let i = 0; i < string.length; i++) {
-    const oddPalinedrome = getOddPalinedromeLength(string, i); 
-    if (longestOdd < oddPalinedrome) {
-      longestOdd = oddPalinedrome;
-      positionOdd = i;
-    }
-
     const evenPalinedrome = getEvenPalinedromeLength(string, i); 
     if (longestEven < evenPalinedrome) {
       longestEven = evenPalinedrome;
       positionEven = i;
     }
   }
+  return {longestEven, positionEven};
+};
 
-  if (longestOdd > longestEven) {
-    return string.substring(positionOdd - longestOdd + 1, positionOdd + longestOdd);
-  } else {
-    return string.substring(positionEven - longestEven + 1, positionEven + 1 + longestEven);
-  }
+// 펠린드롬 판별
+const longestPalindrome = function(string) {
+  const {positionOdd, longestOdd} = isOddPalinedrome(string);
+  const {positionEven, longestEven} = isEvenPalinedrome(string);
+
+  if (longestOdd > longestEven) return string.substring(positionOdd - longestOdd + 1, positionOdd + longestOdd);
+  return string.substring(positionEven - longestEven + 1, positionEven + 1 + longestEven);
 };
 
 console.log(longestPalindrome(input1));
