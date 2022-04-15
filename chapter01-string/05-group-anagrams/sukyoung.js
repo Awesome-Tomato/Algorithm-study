@@ -34,13 +34,13 @@ function createSortHash(sortStrs, originStrs) {
   const hash = {};
   for (let i = 0; i < sortStrs.length; i++) {
     const key = sortStrs[i];
-    const value = getSort(originStrs[i]).join('');
+    hash[key] = [];
+  }
 
-    if (hash[key] !== undefined) {
-      hash[key].push(value);
-    } else {
-      hash[key] = [value];
-    }
+  for (let i = 0; i < sortStrs.length; i++) {
+    const key = sortStrs[i];
+    const value = getSort(originStrs[i]).join('');
+    hash[key].push(value);
   }
   return hash;
 }
