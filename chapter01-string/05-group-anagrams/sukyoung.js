@@ -39,7 +39,7 @@ function createSortHash(sortStrs, originStrs) {
 
   for (let i = 0; i < sortStrs.length; i++) {
     const key = sortStrs[i];
-    const value = getSort(originStrs[i]).join('');
+    const value = originStrs[i];
     hash[key].push(value);
   }
   return hash;
