@@ -15,16 +15,19 @@ var isPalindrome = function (head) {
   const centerNode = at(head, center);
 
   const reversedHalfLinkedList = reverseAll(centerNode);
-  let leftHalf = head;
-  let reversedRightHalf = reversedHalfLinkedList;
-  while (reversedRightHalf) {
-    if (reversedRightHalf.val !== leftHalf.val) return false;
-    leftHalf = leftHalf.next;
-    reversedRightHalf = reversedRightHalf.next;
-  }
-
-  return true;
+  
+  return checkContains(head, reversedHalfLinkedList);
 };
+
+// 둘 중 한쪽이 다른 한쪽의 링크드 리스트의 값들을 포함하고 있는지 확인
+function checkContains(a, b) {
+  while (a && b) {
+    if (a.val !== b.val) return false;
+    a = a.next;
+    b = b.next;
+  }
+  return true;
+}
 
 // head 부터 시작하는 링크드 리스트를 뒤집는다
 function reverseAll(head) {
