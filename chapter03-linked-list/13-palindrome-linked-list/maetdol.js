@@ -15,12 +15,12 @@ var isPalindrome = function (head) {
   const centerNode = at(head, center);
 
   const reversedHalfLinkedList = reverseAll(centerNode);
-  let a = head;
-  let b = reversedHalfLinkedList;
-  while (b) {
-    if (b.val !== a.val) return false;
-    a = a.next;
-    b = b.next;
+  let leftHalf = head;
+  let reversedRightHalf = reversedHalfLinkedList;
+  while (reversedRightHalf) {
+    if (reversedRightHalf.val !== leftHalf.val) return false;
+    leftHalf = leftHalf.next;
+    reversedRightHalf = reversedRightHalf.next;
   }
 
   return true;
