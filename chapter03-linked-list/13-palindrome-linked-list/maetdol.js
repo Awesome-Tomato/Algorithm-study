@@ -10,17 +10,17 @@
  * @return {boolean}
  */
 var isPalindrome = function (head) {
-  const length = len(head);
+  const length = getLengthOfLinkedList(head);
   const center = Math.floor(length / 2);
-  const centerNode = at(head, center);
+  const centerNode = getLinkedListNodeAt(head, center);
 
   const reversedHalfLinkedList = reverseAll(centerNode);
   
-  return checkContains(head, reversedHalfLinkedList);
+  return isContains(head, reversedHalfLinkedList);
 };
 
 // 둘 중 한쪽이 다른 한쪽의 링크드 리스트의 값들을 포함하고 있는지 확인
-function checkContains(a, b) {
+function isContains(a, b) {
   while (a && b) {
     if (a.val !== b.val) return false;
     a = a.next;
@@ -46,7 +46,7 @@ function reverseAll(head) {
 }
 
 // 링크드 리스트에서 index 에 위치한 노드를 가져온다
-function at(head, index) {
+function getLinkedListNodeAt(head, index) {
   let node = head;
   for (let current = 0; current < index; current++) {
     node = node.next;
@@ -56,7 +56,7 @@ function at(head, index) {
 }
 
 // 링크드 리스트의 길이를 가져온다
-function len(linkedList) {
+function getLengthOfLinkedList(linkedList) {
   let length = 0;
   let node = linkedList;
   while (node) {
