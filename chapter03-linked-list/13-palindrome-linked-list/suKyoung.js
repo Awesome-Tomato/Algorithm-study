@@ -12,22 +12,19 @@
  * @param {ListNode} head
  * @return {boolean}
  */
- const isPalindrome = function(head) {
+const isPalindrome = function(head) {
   const nodearray = getArrayFromLinkedList(head); // [1]
   const stack = getStackCenterToEnd(nodearray);
   return isSame(nodearray, stack);
 };
 
 const getArrayFromLinkedList = function(head) {
-  const array = [];  
-  let count = 1;
-  array.push(head.val);
+  const array = [];
 
-  while (true) {
-    const node = eval('head' + '.next'.repeat(count));
-    if (node === null) break;
+  let node = head;
+  while (node) {
     array.push(node.val); 
-    count++;
+    node = node.next;
   }
   return array;
 };
@@ -47,7 +44,7 @@ const getStackCenterToEnd = function(array) {
 }
 
 const isSame = function (array1, array2) {
-    for (let i = 0; i < array1.length/2; i++) {
+    for (let i = 0; i < Math.floor(array1.length/2); i++) {
     if (array1[i] !== array2[i]) return false;
     continue;
   }
