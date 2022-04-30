@@ -16,6 +16,8 @@ var mergeTwoLists = function (list1, list2) {
   const head = new ListNode(null, node2);
 
   while (node1 && node2) {
+    // node1 보다 처음으로 큰 노드를 node2 에서 찾은 다음,
+    // 직전 노드(node1 보다 작음)의 next 를 node1로 변경하는 작업
     node2 = linkToLargerNode({
       fixedLargerNode: node1,
       head: node2,
