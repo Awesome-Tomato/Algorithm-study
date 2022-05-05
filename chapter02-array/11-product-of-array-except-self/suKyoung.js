@@ -5,3 +5,4 @@
 const productExceptSelf = function(nums) {
     
 };
+console.log(productExceptSelf(input1));
