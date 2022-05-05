@@ -8,13 +8,14 @@ const prices3 = [2,4,1];
 const prices4 = [3,2,6,5,0,3];
 
 const maxProfit = function(prices) {
+// FIXME: prices를 전부 반복하며 maxProfit을 구한다
   const {buyPrice, buyDay} = getBuyPrice(prices);
   const sellPrice = getSellPrice(prices, buyDay);
   return (sellPrice - buyPrice);
 };
-
+// FIXME : i번째 인덱스부터 올라가기 직전의 최소값을 찾는다.
 const getBuyPrice = function(array) {
-  let buyPrice = array[0]; // -> min
+  let buyPrice = array[0];
   let buyDay = 0;
   for (let i = 0; i < array.length; i++) {
     if (array[i] < buyPrice && i !== array.length - 1) {
@@ -26,7 +27,7 @@ const getBuyPrice = function(array) {
 };
 
 const getSellPrice = function(array, number) {
-  let sellPrice = 0; // -> max
+  let sellPrice = 0;
   for (let i = number; i < array.length; i++) {
     if (array[i] > sellPrice) {
       sellPrice = array[i];
