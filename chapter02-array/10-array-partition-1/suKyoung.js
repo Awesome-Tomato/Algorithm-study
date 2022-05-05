@@ -8,10 +8,14 @@ const nums2 = [6,2,6,5,1,2];
 
 const arrayPairSum = function(nums) {
   nums = nums.sort(sortArray);
+  return getResult(nums);
+};
+
+const getResult = function(array) {
   let result = 0;
-  for (let i = 0; i < nums.length; i++) {
+  for (let i = 0; i < array.length; i++) {
     if (i % 2 === 0) {
-      result += nums[i];
+      result += array[i];
     };
   }
   return result;
