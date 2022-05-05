@@ -9,26 +9,40 @@ const nums4 = [0,0,0,0];
 const nums5 = [-1,0,1,2,-1,-4];
 
 const threeSum = function(nums) {
-  const result = {};
+  const hashMap = convertArrayToObject(nums);
+  nums.length = 0; // reset array
+  nums = minimizeArrayLength(nums, hashMap); 
+  return getRessult(nums)
+};
 
+const convertArrayToObject = function(numbers) {
   const hashMap = {};
-  for (let i = 0; i < nums.length; i++) {
-    const number = nums[i];
+  for (let i = 0; i < numbers.length; i++) {
+    const number = numbers[i];
     hashMap[number] = (hashMap[number] || 0) + 1;
   }
-  nums.length = 0;
-  for (const number in hashMap) {
-    const numberCountUnderThree = Math.min(hashMap[number], 3);
-    // number라는 숫자로 numberCountUnderThree만큼 채운 배열
-    const array = Array(numberCountUnderThree).fill(Number(number)); 
-    nums.push(...array);
-  }
+  return hashMap;
+};
 
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = i+1; j < nums.length; j++) {
-      for (let k = j+1; k < nums.length; k++) {
-        if ((nums[i] + nums[j] + nums[k] === 0) && (i != j && i != k && j != k)) {
-          const keys = [nums[i], nums[j], nums[k]].sort();
+const minimizeArrayLength = function(array, object) {
+  // if an array has same items over three, minimize the length of array into three...
+  const TRIPLET = 3;
+  for (const nums in object) {
+    const numberCountUnderThree = Math.min(object[nums], TRIPLET);
+    // number라는 숫자로 numberCountUnderThree만큼 채운 배열
+    const newArray = Array(numberCountUnderThree).fill(Number(nums)); 
+    array.push(...newArray);
+  }
+  return array;
+};
+
+const getRessult = function(array) {
+  const result = {};
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i+1; j < array.length; j++) {
+      for (let k = j+1; k < array.length; k++) {
+        if ((array[i] + array[j] + array[k] === 0) && (i != j && i != k && j != k)) {
+          const keys = [array[i], array[j], array[k]].sort();
           result[keys] = keys;
         }
       }
@@ -37,8 +51,8 @@ const threeSum = function(nums) {
   return Object.values(result);
 };
 
-// console.log(threeSum(nums1));
+console.log(threeSum(nums1));
 // console.log(threeSum(nums2));
 // console.log(threeSum(nums3));
-console.log(threeSum(nums4));
+// console.log(threeSum(nums4));
 // console.log(threeSum(nums5));
