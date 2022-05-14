@@ -19,16 +19,12 @@ var mergeTwoLists = function(list1, list2) {
         let arr = []
 
         if(linkedList === null) return arr
-        else {
-            while(linkedList.next !== null) {
-                arr.push(linkedList.val)
-                linkedList = linkedList.next
-            }
-
+        while(linkedList) {
             arr.push(linkedList.val)
-
-            return arr
+            linkedList = linkedList.next
         }
+
+        return arr
     }
 
     const resultByList1 = transLinkedToArr(list1) // list1을 array로 바꿈
@@ -45,7 +41,6 @@ var mergeTwoLists = function(list1, list2) {
             for(let i=1; i<array.length; i++) {
                 selectedNode.next = new ListNode(mergedArr[i])
                 selectedNode = selectedNode.next
-                // console.log(selectedNode, list)
             }
 
             return list
