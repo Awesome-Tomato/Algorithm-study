@@ -17,18 +17,14 @@ var reverseList = function(head) {
     const linkedListToArray = (linkedList) => {
         let arr = []
 
-        if(linkedList) {
-            while(head.next !== null) {
-                arr.push(head.val)
-                head = head.next
-            }
+        if(!linkedList) return arr
+        while(head.next !== null) {
             arr.push(head.val)
-
-            return arr
-        } else {
-            return arr
+            head = head.next
         }
+        arr.push(head.val)
 
+        return arr
     }
 
     const reverseArray = (array) => {
@@ -51,12 +47,10 @@ var reverseList = function(head) {
         }
     }
 
-
     // 여기부터 위에서 구현한 함수를 통해 값을 구함
     const array = linkedListToArray(head)
     const reversedArray = reverseArray(array)
     const result = arrayToLinkedList(reversedArray)
 
     return result
-
 };
