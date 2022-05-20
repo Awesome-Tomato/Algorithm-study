@@ -10,9 +10,8 @@ const nums5 = [-1,0,1,2,-1,-4];
 
 const threeSum = function(nums) {
   const hashMap = convertArrayToObject(nums);
-  nums.length = 0; // reset array
-  nums = minimizeArrayLength(nums, hashMap); 
-  return getRessult(nums)
+  const resultArray = minimizeArrayLength(nums, hashMap); 
+  return getRessult(resultArray)
 };
 
 const convertArrayToObject = function(numbers) {
@@ -25,6 +24,7 @@ const convertArrayToObject = function(numbers) {
 };
 
 const minimizeArrayLength = function(array, object) {
+  array.length = 0; // reset array
   // if an array has same items over three, minimize the length of array into three...
   const TRIPLET = 3;
   for (const nums in object) {
