@@ -21,8 +21,8 @@
 
 [SuKyoung](https://github.com/sukyoungshin)
 \> [MaetDol](https://github.com/MaetDol)
-\> [FEhyoeun](https://github.com/FEhyoeun) :fire:
-\> [becover](https://github.com/becover)
+\> [FEhyoeun](https://github.com/FEhyoeun) 
+\> [becover](https://github.com/becover) :fire:
 \> [chanwooo](https://github.com/chanwooo)
 
 ---
