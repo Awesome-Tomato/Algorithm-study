@@ -1,1 +1,2 @@
-[Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/)
+- [Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/)
+- 자바스크립트를 이용하는 경우, 제가 만들어놓은 스택을 사용하면 편합니다 [[Gist](https://gist.github.com/MaetDol/340ebc439ff29e9486cd2b72de7baaf7)]
