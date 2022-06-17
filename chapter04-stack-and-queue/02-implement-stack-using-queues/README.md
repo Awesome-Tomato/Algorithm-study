@@ -1,1 +1,2 @@
-[Implement Stack using Queues](implement-stack-using-queues)
+- [Implement Stack using Queues](implement-stack-using-queues)
+- 자바스크립트로 푼다면, 제가 구현해놓은 큐를 이용해 풀어보세요 [[Gist](https://gist.github.com/MaetDol/2f3914e032b00bb9a10f9206dfc9fb87)]
